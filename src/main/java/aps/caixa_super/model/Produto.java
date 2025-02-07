@@ -1,5 +1,7 @@
 package aps.caixa_super.model;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -20,6 +22,8 @@ public class Produto {
     private String nome;
     
     private double quantidade;
+
+    private BigDecimal precoUnitario;
 
     @Enumerated(EnumType.STRING)
     private Tipo tipo;

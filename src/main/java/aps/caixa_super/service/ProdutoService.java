@@ -1,5 +1,41 @@
 package aps.caixa_super.service;
 
-public class ProdutoService {
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import aps.caixa_super.model.Produto;
+import aps.caixa_super.repository.ProdutoRepository;
+
+@Service
+public class ProdutoService {
+    @Autowired
+    ProdutoRepository repository;
+
+    public ResponseEntity<List<Produto>> listarProdutos() {
+        return ResponseEntity.ok().body(repository.findAll());
+    }
+
+    public Produto criarProduto(Produto produto) {
+        return repository.save(produto);
+    }
+    
+    public Produto atualizarPreco(Long id, BigDecimal novoPreco) {
+        Optional<Produto> produto = repository.findById(id);
+        produto.get().setPrecoUnitario(novoPreco);
+        
+        return repository.save(produto.get());
+    }
+    
+    // Atualizar as outras coisas
+
+    public void deletarProduto(Long id) {
+        repository.deleteById(id);
+    }
 }

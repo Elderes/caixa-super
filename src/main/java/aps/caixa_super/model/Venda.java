@@ -16,4 +16,5 @@
 //     private Long id;
 //     private List<Produto> produtos;
 //     private LocalDateTime dataDeVenda;
+//     private BigDecimal valorTotal;
 // }

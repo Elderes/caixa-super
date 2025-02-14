@@ -1,10 +1,23 @@
 package aps.caixa_super.service;
 
-public class GerenteService {
-    void adicionarProduto() {}
-    void removerProduto() {}
-    void editarProduto() {}
+import org.springframework.stereotype.Service;
 
-    void criarCaixa() {}
-    void deletarCaixa() {}
+@Service
+public class GerenteService {
+    void adicionarProduto() {
+
+    }
+    void removerProduto() {
+
+    }
+    void editarProduto() {
+
+    }
+
+    void criarCaixa() {
+
+    }
+    void deletarCaixa() {
+
+    }
 }

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -22,18 +24,20 @@ public class ProdutoService {
         return ResponseEntity.ok().body(repository.findAll());
     }
 
+    @Transactional
     public Produto criarProduto(Produto produto) {
         return repository.save(produto);
     }
-    
+
+
     public Produto atualizarPreco(Long id, BigDecimal novoPreco) {
         Optional<Produto> produto = repository.findById(id);
         produto.get().setPrecoUnitario(novoPreco);
-        
+
         return repository.save(produto.get());
     }
     
-    // Atualizar as outras coisas
+     //Atualizar as outras coisas
 
     public void deletarProduto(Long id) {
         repository.deleteById(id);

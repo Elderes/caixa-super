@@ -16,22 +16,24 @@ public class ProdutoController {
     @Autowired
     ProdutoService service;
 
-    @GetMapping("/listar-produtos")
+    @GetMapping("/listar")
     public ResponseEntity<List<Produto>> listarProdutos() {
         return service.listarProdutos();
     }
     
     @PostMapping("/criar")
     public Produto criarProduto(@RequestBody Produto produto) {
+        System.out.println("ciando produto");
         return service.criarProduto(produto);
     }
+
     
     @PostMapping("/atualizar-preco")
     public Produto atualizarProduto(@RequestParam Long id, @RequestParam BigDecimal novoPreco) {
         return service.atualizarPreco(id, novoPreco);
     }
 
-    @DeleteMapping("/deletar-produto")
+    @DeleteMapping("/deletar")
     public void deletarProduto(@RequestParam Long id) {
         service.deletarProduto(id);
     }

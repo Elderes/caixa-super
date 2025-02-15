@@ -14,6 +14,6 @@ public class SwaggerConfig {
                 .info(new Info()
                         .title("API CaixaSuper")
                         .version("1.0")
-                        .description("Documentação da API para gerenciamento de produtos e gerentes."));
+                        .description("CaixaSuper"));
     }
 }

@@ -1,20 +1,19 @@
-// package aps.caixa_super.model;
+package aps.caixa_super.model;
 
-// import java.time.LocalDateTime;
-// import java.util.List;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
+import jakarta.persistence.*;
+import lombok.Data;
 
-// import jakarta.persistence.Entity;
-// import jakarta.persistence.GeneratedValue;
-// import jakarta.persistence.GenerationType;
-// import jakarta.persistence.Id;
-// import lombok.Data;
+@Entity
+@Table(name = "tb_venda")
+@Data
+public class Venda {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-// @Data
-// public class Venda {
-//     @Id
-//     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//     private Long id;
-//     private List<Produto> produtos;
-//     private LocalDateTime dataDeVenda;
-//     private BigDecimal valorTotal;
-// }
+    private LocalDateTime dataDeVenda;
+    private BigDecimal valorTotal;
+}

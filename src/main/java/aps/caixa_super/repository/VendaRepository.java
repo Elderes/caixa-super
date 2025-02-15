@@ -1,7 +1,9 @@
-// package aps.caixa_super.repository;
+package aps.caixa_super.repository;
 
-// import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import aps.caixa_super.model.Venda;
 
-// public interface VendaRepository extends JpaRepository<VendaRepository, Long> {
-
-// }
+@Repository
+public interface VendaRepository extends JpaRepository<Venda, Long> {
+}

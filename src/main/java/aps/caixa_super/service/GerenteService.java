@@ -1,23 +1,19 @@
 package aps.caixa_super.service;
 
+import aps.caixa_super.model.Produto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class GerenteService {
-    void adicionarProduto() {
+    private final ProdutoService produtoService;
 
-    }
-    void removerProduto() {
-
-    }
-    void editarProduto() {
-
+    @Autowired
+    public GerenteService(ProdutoService produtoService) {
+        this.produtoService = produtoService;
     }
 
-    void criarCaixa() {
-
-    }
-    void deletarCaixa() {
-
+    public Produto adicionarProdutoComoGerente(Produto produto) {
+        return produtoService.criarProduto(produto);
     }
 }

@@ -2,7 +2,6 @@ package aps.caixa_super.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,5 +14,10 @@ public class Venda {
     private Long id;
 
     private LocalDateTime dataDeVenda;
+
     private BigDecimal valorTotal;
+
+    @ManyToOne
+    @JoinColumn(name = "caixa_id", nullable = false)
+    private Caixa caixa;
 }

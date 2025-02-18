@@ -12,6 +12,9 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import org.springframework.transaction.annotation.Transactional;
 
+import aps.caixa_super.model.Caixa;
+import aps.caixa_super.repository.CaixaRepository;
+
 @Service
 public class VendaService {
 
@@ -20,6 +23,9 @@ public class VendaService {
 
     @Autowired
     private VendaRepository vendaRepository;
+
+    @Autowired
+    private CaixaRepository caixaRepository;
 
     @Transactional
     public Venda realizarVenda(VendaRequestDTO vendaRequest) {
@@ -41,16 +47,23 @@ public class VendaService {
             valorTotal = valorTotal.add(valorProduto);
 
             // Atualiza o estoque e salva
-            System.out.println("Quantidade antes da venda: " + produto.getQuantidade());
             produto.setQuantidade(produto.getQuantidade() - produtoVendaDTO.getQuantidade());
-            System.out.println("Quantidade após a venda: " + produto.getQuantidade());
             produtoRepository.save(produto);
         }
+
+        // Busca o caixa pelo ID
+        Caixa caixa = caixaRepository.findById(vendaRequest.getCaixaId())
+                .orElseThrow(() -> new IllegalArgumentException("Caixa não encontrado com ID: " + vendaRequest.getCaixaId()));
+
+        // Atualiza o saldo do caixa
+        caixa.setQuantiaArmazenada(caixa.getQuantiaArmazenada().add(valorTotal));
+        caixaRepository.save(caixa);
 
         // Criando a venda
         Venda venda = new Venda();
         venda.setDataDeVenda(LocalDateTime.now());
         venda.setValorTotal(valorTotal);
+        venda.setCaixa(caixa);
 
         return vendaRepository.save(venda);
     }

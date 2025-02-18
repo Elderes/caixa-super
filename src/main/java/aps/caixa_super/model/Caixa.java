@@ -1,12 +1,10 @@
 package aps.caixa_super.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
@@ -16,5 +14,9 @@ public class Caixa {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    private BigDecimal quantiaArmazenada;
+
+    private BigDecimal quantiaArmazenada = BigDecimal.ZERO;
+
+    @OneToMany(mappedBy = "caixa", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Venda> vendas = new ArrayList<>();
 }

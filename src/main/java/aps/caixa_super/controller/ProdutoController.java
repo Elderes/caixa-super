@@ -3,6 +3,7 @@ package aps.caixa_super.controller;
 import java.math.BigDecimal;
 import java.util.List;
 
+import aps.caixa_super.model.Caixa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,8 +28,15 @@ public class ProdutoController {
         return service.criarProduto(produto);
     }
 
+    //Ver local certo para colocar
+    @PostMapping("/criar-caixa")
+    public Caixa criarCaixa(@RequestBody Caixa caixa) {
+        System.out.println("ciando produto");
+        return service.criarCaixa(caixa);
+    }
+
     
-    @PostMapping("/atualizar-preco")
+    @PutMapping("/atualizar-preco")
     public Produto atualizarProduto(@RequestParam Long id, @RequestParam BigDecimal novoPreco) {
         return service.atualizarPreco(id, novoPreco);
     }

@@ -9,6 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 public class VendaRequestDTO {
+    private Long caixaId;
     private List<ProdutoVendaDTO> produtos;
 
 }

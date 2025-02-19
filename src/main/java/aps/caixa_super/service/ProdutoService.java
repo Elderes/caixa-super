@@ -1,18 +1,15 @@
 package aps.caixa_super.service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import aps.caixa_super.model.Caixa;
 import aps.caixa_super.repository.CaixaRepository;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import aps.caixa_super.model.Produto;
 import aps.caixa_super.repository.ProdutoRepository;

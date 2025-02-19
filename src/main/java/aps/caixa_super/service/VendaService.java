@@ -38,7 +38,7 @@ public class VendaService {
 
             // Verifica se há estoque suficiente
             if (produto.getQuantidade() < produtoVendaDTO.getQuantidade()) {
-                throw new IllegalArgumentException("Quantidade insuficiente do produto: " + produto.getNome());
+                    throw new IllegalArgumentException("Quantidade insuficiente do produto: " + produto.getNome());
             }
 
             // Calcula o valor do produto na venda

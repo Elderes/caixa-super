@@ -28,7 +28,7 @@ public class ProdutoService {
     @Transactional
     public Caixa criarCaixa(Caixa caixa) {
         return caixaRepository.save(caixa);
-    }
+    }   
 
     public ResponseEntity<List<Produto>> listarProdutos() {
         return ResponseEntity.ok().body(repository.findAll());

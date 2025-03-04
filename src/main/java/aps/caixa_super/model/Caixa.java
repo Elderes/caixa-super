@@ -12,7 +12,7 @@ import lombok.Data;
 @Table(name = "tb_caixa")
 public class Caixa {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;

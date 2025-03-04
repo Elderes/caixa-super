@@ -15,5 +15,4 @@ public class Gerente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
-    
 }

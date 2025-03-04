@@ -27,6 +27,8 @@ public class VendaService {
     @Autowired
     private CaixaRepository caixaRepository;
 
+    //Colocar mapper
+
     @Transactional
     public Venda realizarVenda(VendaRequestDTO vendaRequest) {
         BigDecimal valorTotal = BigDecimal.ZERO;

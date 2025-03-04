@@ -1,7 +1,7 @@
 package aps.caixa_super.service;
 
-import aps.caixa_super.DTOs.ProdutoVendaDTO;
-import aps.caixa_super.DTOs.VendaRequestDTO;
+import aps.caixa_super.DTOs.request.ProdutoVendaDTO;
+import aps.caixa_super.DTOs.request.VendaRequestDTO;
 import aps.caixa_super.model.Produto;
 import aps.caixa_super.model.Venda;
 import aps.caixa_super.repository.ProdutoRepository;
@@ -67,4 +67,7 @@ public class VendaService {
 
         return vendaRepository.save(venda);
     }
+
+//Deletar venda???
+
 }

@@ -1,5 +1,6 @@
-package aps.caixa_super.DTOs;
+package aps.caixa_super.DTOs.request;
 
+import aps.caixa_super.DTOs.request.ProdutoVendaDTO;
 import lombok.Getter;
 import lombok.Setter;
 

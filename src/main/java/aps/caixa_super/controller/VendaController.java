@@ -1,6 +1,6 @@
 package aps.caixa_super.controller;
 
-import aps.caixa_super.DTOs.VendaRequestDTO;
+import aps.caixa_super.DTOs.request.VendaRequestDTO;
 import aps.caixa_super.model.Venda;
 import aps.caixa_super.service.VendaService;
 import org.springframework.beans.factory.annotation.Autowired;

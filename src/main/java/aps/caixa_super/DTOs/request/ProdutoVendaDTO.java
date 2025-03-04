@@ -1,4 +1,4 @@
-package aps.caixa_super.DTOs;
+package aps.caixa_super.DTOs.request;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,5 +8,6 @@ import lombok.Setter;
 public class ProdutoVendaDTO {
     private Long produtoId;
     private double quantidade;
+    private String teste;
 
 }

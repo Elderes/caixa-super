@@ -1,0 +1,20 @@
+package aps.caixa_super.DTOs.request;
+
+import aps.caixa_super.model.Tipo;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import lombok.Data;
+
+import java.math.BigDecimal;
+
+@Data
+public class ProdutoRequestDTO {
+
+    String nome;
+
+    double quantidade;
+
+    BigDecimal precoUnitario;
+
+    Tipo tipo;
+}

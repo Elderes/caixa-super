@@ -14,6 +14,7 @@ public class Caixa {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
     private String nome;
 
     private BigDecimal quantiaArmazenada = BigDecimal.ZERO;

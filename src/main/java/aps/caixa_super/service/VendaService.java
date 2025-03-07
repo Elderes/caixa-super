@@ -69,7 +69,6 @@ public class VendaService {
 
         return vendaRepository.save(venda);
     }
-
 //Deletar venda???
 
 }

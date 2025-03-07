@@ -44,14 +44,14 @@ public class GerenteController {
     }
 
     @DeleteMapping("/deletar-produto")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletarProduto(@RequestParam Long id) {
         produtoService.deletarProduto(id);
     }
 
     @DeleteMapping("/Deletar-caixa")
+    @ResponseStatus(HttpStatus.NO_CONTENT) //Não sei se essa e a melhor for de retornar o codigo 204
     public void deletarCaixa(@RequestParam Long id) {
         produtoService.deletarCaixa(id);
     }
-
-     
 }

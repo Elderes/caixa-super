@@ -8,6 +8,4 @@ import lombok.Setter;
 public class ProdutoVendaDTO {
     private Long produtoId;
     private double quantidade;
-    private String teste;
-
 }

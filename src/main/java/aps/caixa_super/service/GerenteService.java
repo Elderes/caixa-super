@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import aps.caixa_super.model.Produto;
 import aps.caixa_super.repository.ProdutoRepository;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 public class GerenteService {
@@ -41,7 +42,9 @@ public class GerenteService {
     public ResponseEntity<List<Produto>> listarProdutos() {
         return ResponseEntity.ok().body(produtoRepository.findAll());
     }
-
+//    public ResponseEntity<Produto> detalharProduto(@PathVariable Long id) {
+//        return ResponseEntity.ok().body(produtoRepository.getById(id));
+//    }
     public ResponseEntity<List<Caixa>> listarCaixas(){
         return ResponseEntity.ok().body(caixaRepository.findAll());
     }
@@ -76,8 +79,14 @@ public class GerenteService {
     public void deletarProduto(Long id) {
         produtoRepository.deleteById(id);
     }
+    public boolean produtoExiste(Long id) {
+        return produtoRepository.existsById(id);
+    }
 
     public void deletarCaixa(Long id){
         caixaRepository.deleteById(id);
+    }
+    public boolean caixaExiste(Long id) {
+        return produtoRepository.existsById(id);
     }
 }

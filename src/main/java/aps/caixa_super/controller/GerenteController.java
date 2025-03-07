@@ -6,14 +6,16 @@ import java.util.List;
 import aps.caixa_super.DTOs.request.CaixaRequestDTO;
 import aps.caixa_super.DTOs.request.ProdutoRequestDTO;
 import aps.caixa_super.model.Caixa;
+import aps.caixa_super.repository.ProdutoRepository;
 import aps.caixa_super.service.GerenteService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import aps.caixa_super.model.Produto;
+
 
 @RestController
 @RequestMapping("/gerente")
@@ -21,10 +23,18 @@ public class GerenteController {
     @Autowired
     GerenteService produtoService;
 
+    @Autowired
+    ProdutoRepository produtoRepository;
+
     @GetMapping("/listar-produto")
     public ResponseEntity<List<Produto>> listarProdutos() {
         return produtoService.listarProdutos();
     }
+
+//    @GetMapping("/detalhar-produto/{id}")
+//    public ResponseEntity<Produto> detalharProduto(@PathVariable Long id) {
+//        return ResponseEntity.ok().body(produtoRepository.getById(id));
+//    }
 
     @GetMapping("/listar-caixas")
     public ResponseEntity<List<Caixa>> listarCaixas(){
@@ -48,14 +58,20 @@ public class GerenteController {
         return produtoService.atualizarPreco(id, novoPreco);
     }
 
-    @DeleteMapping("/deletar-produto")
+    @DeleteMapping("/deletar-produto/{id}")
     public ResponseEntity<Void> deletarProduto(@RequestParam Long id) {
+        if (!produtoService.produtoExiste(id)) {
+            return ResponseEntity.notFound().build();  // Sem essa vericacao tava retornando 204 mesmo colocando id errado
+        }
         produtoService.deletarProduto(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.noContent().build(); //204
     }
 
     @DeleteMapping("/Deletar-caixa/{id}")
     public ResponseEntity<Void> deletarCaixa(@PathVariable Long id) {
+        if (!produtoService.caixaExiste(id)) {
+            return ResponseEntity.notFound().build();  // Retorna 404 se não encontrar o caixa
+        }
         produtoService.deletarCaixa(id);
         return ResponseEntity.noContent().build();
     }

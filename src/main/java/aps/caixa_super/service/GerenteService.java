@@ -42,6 +42,10 @@ public class GerenteService {
         return ResponseEntity.ok().body(produtoRepository.findAll());
     }
 
+    public ResponseEntity<List<Caixa>> listarCaixas(){
+        return ResponseEntity.ok().body(caixaRepository.findAll());
+    }
+
 //    @Transactional
 //    public Produto criarProduto(Produto produto) {
 //        return produtoRepository.save(produto);

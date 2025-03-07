@@ -25,6 +25,11 @@ public class GerenteController {
     public ResponseEntity<List<Produto>> listarProdutos() {
         return produtoService.listarProdutos();
     }
+
+    @GetMapping("/listar-caixas")
+    public ResponseEntity<List<Caixa>> listarCaixas(){
+        return produtoService.listarCaixas();
+    }
     
     @PostMapping("/criar-produto")
     public ResponseEntity <Produto> criarProduto(@RequestBody ProdutoRequestDTO produto) {
@@ -44,14 +49,14 @@ public class GerenteController {
     }
 
     @DeleteMapping("/deletar-produto")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletarProduto(@RequestParam Long id) {
+    public ResponseEntity<Void> deletarProduto(@RequestParam Long id) {
         produtoService.deletarProduto(id);
+        return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/Deletar-caixa")
-    @ResponseStatus(HttpStatus.NO_CONTENT) //Não sei se essa e a melhor for de retornar o codigo 204
-    public void deletarCaixa(@RequestParam Long id) {
+    @DeleteMapping("/Deletar-caixa/{id}")
+    public ResponseEntity<Void> deletarCaixa(@PathVariable Long id) {
         produtoService.deletarCaixa(id);
+        return ResponseEntity.noContent().build();
     }
 }

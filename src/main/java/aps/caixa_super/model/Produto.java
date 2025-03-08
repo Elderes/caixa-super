@@ -2,6 +2,9 @@ package aps.caixa_super.model;
 
 import java.math.BigDecimal;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
 
@@ -14,10 +17,15 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private String nome;
 
+    @NotNull
+    @Positive(message = "O valor deve ser positivo")
     private double quantidade;
 
+    @NotNull
+    @Positive(message = "O valor deve ser positivo")
     private BigDecimal precoUnitario;
 
     @Enumerated(EnumType.STRING)

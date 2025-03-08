@@ -9,12 +9,14 @@ import aps.caixa_super.model.Caixa;
 import aps.caixa_super.repository.ProdutoRepository;
 import aps.caixa_super.service.GerenteService;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import aps.caixa_super.model.Produto;
+import org.springframework.web.server.ResponseStatusException;
 
 
 @RestController
@@ -32,7 +34,7 @@ public class GerenteController {
     }
 
 //    @GetMapping("/detalhar-produto/{id}")
-//    public ResponseEntity<Produto> detalharProduto(@PathVariable Long id) {
+//    public ResponseEntity<ProdutoRequestDTO> detalharProduto(@PathVariable Long id) {
 //        return ResponseEntity.ok().body(produtoRepository.getById(id));
 //    }
 
@@ -42,7 +44,7 @@ public class GerenteController {
     }
     
     @PostMapping("/criar-produto")
-    public ResponseEntity <Produto> criarProduto(@RequestBody ProdutoRequestDTO produto) {
+    public ResponseEntity <Produto> criarProduto(@Valid @RequestBody ProdutoRequestDTO produto) {
         Produto criaPoduto = produtoService.salvaProduto(produto);
         return ResponseEntity.status(HttpStatus.CREATED).body(criaPoduto);
     }

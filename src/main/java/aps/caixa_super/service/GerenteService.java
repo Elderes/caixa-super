@@ -42,9 +42,9 @@ public class GerenteService {
     public ResponseEntity<List<Produto>> listarProdutos() {
         return ResponseEntity.ok().body(produtoRepository.findAll());
     }
-//    public ResponseEntity<Produto> detalharProduto(@PathVariable Long id) {
-//        return ResponseEntity.ok().body(produtoRepository.getById(id));
-//    }
+    public ResponseEntity<Produto> detalharProduto(@PathVariable Long id) {
+        return ResponseEntity.ok().body(produtoRepository.getById(id));
+    }
     public ResponseEntity<List<Caixa>> listarCaixas(){
         return ResponseEntity.ok().body(caixaRepository.findAll());
     }

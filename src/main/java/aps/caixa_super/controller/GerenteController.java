@@ -23,58 +23,59 @@ import org.springframework.web.server.ResponseStatusException;
 @RequestMapping("/gerente")
 public class GerenteController {
     @Autowired
-    GerenteService produtoService;
+    GerenteService gerenteService;
 
     @Autowired
     ProdutoRepository produtoRepository;
 
     @GetMapping("/listar-produto")
     public ResponseEntity<List<Produto>> listarProdutos() {
-        return produtoService.listarProdutos();
+        return gerenteService.listarProdutos();
     }
 
-//    @GetMapping("/detalhar-produto/{id}")
-//    public ResponseEntity<ProdutoRequestDTO> detalharProduto(@PathVariable Long id) {
-//        return ResponseEntity.ok().body(produtoRepository.getById(id));
-//    }
+
+    @GetMapping("/detalhar-produto/{id}") //Ajustar esse metodo com urgencia
+    public ResponseEntity<Produto> detalharProduto(@PathVariable Long id) {
+        return ResponseEntity.ok().body(produtoRepository.getById(id));
+    }
 
     @GetMapping("/listar-caixas")
     public ResponseEntity<List<Caixa>> listarCaixas(){
-        return produtoService.listarCaixas();
+        return gerenteService.listarCaixas();
     }
     
     @PostMapping("/criar-produto")
     public ResponseEntity <Produto> criarProduto(@Valid @RequestBody ProdutoRequestDTO produto) {
-        Produto criaPoduto = produtoService.salvaProduto(produto);
+        Produto criaPoduto = gerenteService.salvaProduto(produto);
         return ResponseEntity.status(HttpStatus.CREATED).body(criaPoduto);
     }
 
     @PostMapping("/criar-caixa")
     public ResponseEntity <Caixa> criarCaixa(@RequestBody CaixaRequestDTO caixa) {
-        Caixa criaCaixa = produtoService.salvarCaixa(caixa);
+        Caixa criaCaixa = gerenteService.salvarCaixa(caixa);
         return ResponseEntity.status(HttpStatus.CREATED).body(criaCaixa);
     }
     
     @PutMapping("/atualizar-preco")
     public Produto atualizarProduto(@RequestParam Long id, @RequestParam BigDecimal novoPreco) {
-        return produtoService.atualizarPreco(id, novoPreco);
+        return gerenteService.atualizarPreco(id, novoPreco);
     }
 
     @DeleteMapping("/deletar-produto/{id}")
     public ResponseEntity<Void> deletarProduto(@RequestParam Long id) {
-        if (!produtoService.produtoExiste(id)) {
+        if (!gerenteService.produtoExiste(id)) {
             return ResponseEntity.notFound().build();  // Sem essa vericacao tava retornando 204 mesmo colocando id errado
         }
-        produtoService.deletarProduto(id);
+        gerenteService.deletarProduto(id);
         return ResponseEntity.noContent().build(); //204
     }
 
     @DeleteMapping("/Deletar-caixa/{id}")
     public ResponseEntity<Void> deletarCaixa(@PathVariable Long id) {
-        if (!produtoService.caixaExiste(id)) {
+        if (!gerenteService.caixaExiste(id)) {
             return ResponseEntity.notFound().build();  // Retorna 404 se não encontrar o caixa
         }
-        produtoService.deletarCaixa(id);
+        gerenteService.deletarCaixa(id);
         return ResponseEntity.noContent().build();
     }
 }

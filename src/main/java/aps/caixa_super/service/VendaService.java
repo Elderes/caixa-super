@@ -1,15 +1,21 @@
 package aps.caixa_super.service;
 
+import aps.caixa_super.DTOs.mapper.CaixaMapper;
+import aps.caixa_super.DTOs.mapper.VendaMapper;
 import aps.caixa_super.DTOs.request.ProdutoVendaDTO;
 import aps.caixa_super.DTOs.request.VendaRequestDTO;
+import aps.caixa_super.DTOs.response.VendaResponseDTO;
 import aps.caixa_super.model.Produto;
 import aps.caixa_super.model.Venda;
 import aps.caixa_super.repository.ProdutoRepository;
 import aps.caixa_super.repository.VendaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import aps.caixa_super.model.Caixa;
@@ -26,6 +32,9 @@ public class VendaService {
 
     @Autowired
     private CaixaRepository caixaRepository;
+
+    @Autowired
+    private CaixaMapper caixaMapper;
 
     //Colocar mapper
 
@@ -69,6 +78,24 @@ public class VendaService {
 
         return vendaRepository.save(venda);
     }
-//Deletar venda???
+
+    public ResponseEntity<List<VendaResponseDTO>> listarVendas() {
+        List<Venda> vendas = vendaRepository.findAll();
+        List<VendaResponseDTO> vendasDTO = VendaMapper.toDTOList(vendas);
+        return ResponseEntity.ok(vendasDTO);
+    }
+
+    @Transactional
+    public ResponseEntity<Void> deletarVenda(Long vendaId) {
+        // Busca a venda para garantir que ela existe
+        Venda venda = vendaRepository.findById(vendaId)
+                .orElseThrow(() -> new IllegalArgumentException("Venda não encontrada com ID: " + vendaId));
+
+        // Remove a venda do banco de dados
+        vendaRepository.delete(venda);
+
+        // Retorna resposta 204 (No Content) para indicar que a operação foi bem-sucedida
+        return ResponseEntity.noContent().build();
+    }
 
 }

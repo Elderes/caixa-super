@@ -6,6 +6,7 @@ import java.util.List;
 import aps.caixa_super.DTOs.request.CaixaRequestDTO;
 import aps.caixa_super.DTOs.request.ProdutoRequestDTO;
 import aps.caixa_super.model.Caixa;
+import aps.caixa_super.model.Tipo;
 import aps.caixa_super.repository.ProdutoRepository;
 import aps.caixa_super.service.GerenteService;
 
@@ -34,9 +35,20 @@ public class GerenteController {
     }
 
     @GetMapping("/listar-produto-maior-menor")
+    public ResponseEntity<List<Produto>> listarProdutosMaiorMenor() {
+        return gerenteService.ListarProdutoMaiorMenor();
+    }
+
+    @GetMapping("/listar-produto-menor-maior")
     public ResponseEntity<List<Produto>> listarProdutosMenorMaior() {
         return gerenteService.ListarProdutoMenorMaior();
     }
+
+    @GetMapping("/listar-produto-por")
+    public ResponseEntity<List<Produto>> listarProdutoPorNome(@RequestParam String nome) {
+        return gerenteService.ListarProdutoPorNome(nome);
+    }
+
 
     @GetMapping("/detalhar-produto/{id}") //Ajustar esse metodo com urgencia
     public ResponseEntity<Produto> detalharProduto(@PathVariable Long id) {

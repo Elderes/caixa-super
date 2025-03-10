@@ -9,6 +9,7 @@ import aps.caixa_super.DTOs.mapper.ProdutoMapper;
 import aps.caixa_super.DTOs.request.CaixaRequestDTO;
 import aps.caixa_super.DTOs.request.ProdutoRequestDTO;
 import aps.caixa_super.model.Caixa;
+import aps.caixa_super.model.Tipo;
 import aps.caixa_super.repository.CaixaRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,14 @@ public class GerenteService {
 
     public ResponseEntity<List<Produto>> ListarProdutoMenorMaior(){
         return ResponseEntity.ok().body(produtoRepository.FindBySmallestToLargest());
+    }
+
+    public ResponseEntity<List<Produto>> ListarProdutoMaiorMenor(){
+        return ResponseEntity.ok().body(produtoRepository.FindByLargestToSmallest());
+    }
+
+    public ResponseEntity<List<Produto>> ListarProdutoPorNome(String nome){
+        return ResponseEntity.ok().body(produtoRepository.findByNome(nome));
     }
 
 //    @Transactional

@@ -33,6 +33,10 @@ public class GerenteController {
         return gerenteService.listarProdutos();
     }
 
+    @GetMapping("/listar-produto-maior-menor")
+    public ResponseEntity<List<Produto>> listarProdutosMenorMaior() {
+        return gerenteService.ListarProdutoMenorMaior();
+    }
 
     @GetMapping("/detalhar-produto/{id}") //Ajustar esse metodo com urgencia
     public ResponseEntity<Produto> detalharProduto(@PathVariable Long id) {

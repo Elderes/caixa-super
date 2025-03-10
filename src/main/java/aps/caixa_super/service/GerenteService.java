@@ -49,6 +49,10 @@ public class GerenteService {
         return ResponseEntity.ok().body(caixaRepository.findAll());
     }
 
+    public ResponseEntity<List<Produto>> ListarProdutoMenorMaior(){
+        return ResponseEntity.ok().body(produtoRepository.FindBySmallestToLargest());
+    }
+
 //    @Transactional
 //    public Produto criarProduto(Produto produto) {
 //        return produtoRepository.save(produto);

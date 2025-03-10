@@ -14,5 +14,6 @@ public class Gerente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String nome;
+    private String login;
+    private String senha;
 }

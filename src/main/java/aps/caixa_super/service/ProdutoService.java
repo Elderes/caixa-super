@@ -21,18 +21,12 @@ import aps.caixa_super.repository.ProdutoRepository;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
-public class GerenteService {
+public class ProdutoService {
     @Autowired
     ProdutoRepository produtoRepository;
 
     @Autowired
-    CaixaRepository caixaRepository;
-
-    @Autowired
     ProdutoMapper produtoMapper;
-
-    @Autowired
-    CaixaMapper caixaMapper;
 
 //    @Transactional
 //    public Caixa criarCaixa(Caixa caixa) {
@@ -46,21 +40,9 @@ public class GerenteService {
     public ResponseEntity<Produto> detalharProduto(@PathVariable Long id) {
         return ResponseEntity.ok().body(produtoRepository.getById(id));
     }
-    public ResponseEntity<List<Caixa>> listarCaixas(){
-        return ResponseEntity.ok().body(caixaRepository.findAll());
-    }
 
-    public ResponseEntity<List<Produto>> ListarProdutoMenorMaior(){
-        return ResponseEntity.ok().body(produtoRepository.FindBySmallestToLargest());
-    }
 
-    public ResponseEntity<List<Produto>> ListarProdutoMaiorMenor(){
-        return ResponseEntity.ok().body(produtoRepository.FindByLargestToSmallest());
-    }
 
-    public ResponseEntity<List<Produto>> ListarProdutoPorNome(String nome){
-        return ResponseEntity.ok().body(produtoRepository.findByNome(nome));
-    }
 
 //    @Transactional
 //    public Produto criarProduto(Produto produto) {
@@ -73,11 +55,7 @@ public class GerenteService {
         return produtoRepository.save(produto);
     }
 
-    @Transactional
-    public Caixa salvarCaixa(CaixaRequestDTO caixaRequestDTO){
-        Caixa caixa = caixaMapper.toEntity(caixaRequestDTO);
-        return caixaRepository.save(caixa);
-    }
+
 
     public Produto atualizarPreco(Long id, BigDecimal novoPreco) {
         Optional<Produto> produto = produtoRepository.findById(id);
@@ -96,10 +74,4 @@ public class GerenteService {
         return produtoRepository.existsById(id);
     }
 
-    public void deletarCaixa(Long id){
-        caixaRepository.deleteById(id);
-    }
-    public boolean caixaExiste(Long id) {
-        return produtoRepository.existsById(id);
-    }
 }

@@ -1,11 +1,11 @@
 package aps.caixa_super.controller;
 
-import aps.caixa_super.DTOs.request.ProdutoRequestDTO;
 import aps.caixa_super.DTOs.request.VendaRequestDTO;
 import aps.caixa_super.DTOs.response.VendaResponseDTO;
 import aps.caixa_super.model.Produto;
 import aps.caixa_super.model.Venda;
 import aps.caixa_super.service.VendaService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/venda")
+@SecurityRequirement(name = "bearer-key")
 public class VendaController {
 
     @Autowired

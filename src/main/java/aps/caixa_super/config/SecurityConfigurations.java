@@ -11,6 +11,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -32,20 +33,19 @@ public class SecurityConfigurations {
                 .build();
     }
 
-
-
     @Bean
     public AuthenticationManager authenticationManager (AuthenticationConfiguration configuration) throws Exception{
         return configuration.getAuthenticationManager();
     }
 
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance(); // Apenas para teste
     }
+
 //    @Bean
 //    public PasswordEncoder passwordEncoder(){
 //        return new BCryptPasswordEncoder();
 //    }
+
 }

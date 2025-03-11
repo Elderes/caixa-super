@@ -51,7 +51,7 @@ public class ProdutoController {
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<Void> deletarProduto(@RequestParam Long id) {
         if (!ProdutoService.produtoExiste(id)) {
-            return ResponseEntity.notFound().build();  // Sem essa vericacao tava retornando 204 mesmo colocando id errado
+            return ResponseEntity.notFound().build();
         }
         ProdutoService.deletarProduto(id);
         return ResponseEntity.noContent().build(); //204

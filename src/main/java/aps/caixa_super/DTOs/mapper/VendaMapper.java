@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class VendaMapper {
     public static VendaResponseDTO toDTO(Venda venda) {
         return new VendaResponseDTO(
-                venda.getDataDeVenda(), // Mantém como LocalDateTime
+                venda.getDataDeVenda(),
                 venda.getValorTotal(),
                 venda.getCaixa()
         );

@@ -32,10 +32,13 @@ public class ProdutoController {
         return ProdutoService.listarProdutos();
     }
 
-    @GetMapping("/detalhar-produto/{id}") //Ajustar esse metodo com urgencia
+    @GetMapping("/detalhar-produto/{id}")
     public ResponseEntity<Produto> detalharProduto(@PathVariable Long id) {
-        return ResponseEntity.ok().body(produtoRepository.getById(id));
+        return produtoRepository.findById(id)
+                .map(produto -> ResponseEntity.ok().body(produto))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
+
 
     @PostMapping("/criar")
     public ResponseEntity <Produto> criarProduto(@Valid @RequestBody ProdutoRequestDTO produto) {

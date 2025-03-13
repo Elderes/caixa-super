@@ -28,7 +28,7 @@ public class FiltroController {
         return filtroService.ListarProdutoMenorMaior();
     }
 
-    @GetMapping("/listar-produto-por")
+    @GetMapping("/listar-produto-por-nome")
     public ResponseEntity<List<Produto>> listarProdutoPorNome(@RequestParam String nome) {
         return filtroService.ListarProdutoPorNome(nome);
     }
